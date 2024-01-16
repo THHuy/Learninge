@@ -1,0 +1,23 @@
+<div class="mt-4">
+    <div class="profile">
+        <p>Xin chào, {{user.username}}</p>
+        <div class="profile-info">
+            <p>Họ và tên: {{data.fullname}}</p>
+            <p>Tên đăng nhập: {{data.username}}</p>
+            <p>Email: {{data.email}}</p>
+            <p>Số điện thoại: {{data.phone}}</p>
+            <p>Ngày tạo: {{data.createdAt}}</p>
+            <p>Cập nhập lần cuối: {{data.updatedAt}}</p>
+        </div>
+        <div class="restore">
+            <a href="/edit/{{user._id}}" class="edit">
+                Sửa thông tin
+            </a>
+        </div>
+        <div class="point">
+            <a href="/user/point/{{dataPoint._id}}">
+                Xem điểm
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="profile">
+    <p>Xin chào, {{username.username}}</p>
+    <table class="table mt-4 table-hover">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Title</th>
+                <th scope="col">Group</th>
+                <th scope="col">Bài tập</th>
+                <th scope="col">Điểm</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td> {{this.title}}</td>
+                <td> {{this.group}}</td>
+                <td> {{this.ex}}</td>
+                <td> {{this.point}}</td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>

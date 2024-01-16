@@ -1,0 +1,22 @@
+<div class="mt-4">
+    <div class="profile">
+        <h3>Sửa thông tin</h3>
+        <form method="POST" action="/{{data._id}}?_method=PUT">
+            <div class="profile-info">
+                <label for="fullname">Họ và tên </label>
+                <input type="text" class="form-control"
+                    value="{{data.fullname}}" name="fullname" id="fullname">
+                <p class="mt-4">Tên đăng nhập: {{data.username}}</p>
+                <label for="email">Email</label>
+                <input type="text" class="form-control" value="{{data.email}}"
+                    name="email" id="email">
+                <label for="phone">Số điện thoại</label>
+                <input type="text" class="form-control" value="{{data.phone}}"
+                    name="phone" id="phone">
+                <p class="mt-4">Ngày tạo: {{data.createdAt}}</p>
+                <p>Cập nhập lần cuối: {{data.updatedAt}}</p>
+            </div>
+            <button type="submit" class="btn btn-primary">Lưu lại</button>
+        </form>
+    </div>
+</div>

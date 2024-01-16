@@ -1,0 +1,29 @@
+<div class="conteiner">
+    <div class="content">
+        {{#each data}}
+        <h1>{{this.name}}</h1>
+        {{/each}}
+        <a id="back_to_category" href="/home">
+            <button class="btn back-button" style="text-transform: uppercase;" onclick="goBack()">Back
+                To Word List</button>
+        </a>
+        <div id="topic" class="row">
+            {{#each data}}
+            {{#each this.exercises}}
+            <div class="col-sm-12 col-md-6">
+                <a href="/exercises?id={{this.id}}&name={{../this.name}}&group={{sum @index 1}}&idstart={{../this.id_start}}">
+                    <div class="exercise">
+                        <p>Group {{sum @index 1}}</p>
+                        {{#each this.words}}
+                        <span class="badge custom">
+                            {{this}}
+                        </span>
+                        {{/each}}
+                    </div>
+                </a>
+            </div>
+            {{/each}}
+            {{/each}}
+        </div>
+    </div>
+    <script src="/js/active.js"></script>

@@ -1,0 +1,98 @@
+<div class="conteiner">
+    <div class="content">
+        <h1>Exercises</h1>
+        <a id="back_to_wl" href>
+            <button class="btn back-button" onclick="goBack()">Back To Word List</button>
+        </a>
+        <div id="exercises">
+            <div id="nav-tab" class="nav-exercises">
+                <div class="tab-item active">Exercises-1</div>
+                <div class="tab-item">Exercises-2</div>
+                <div class="tab-item">Exercises-3</div>
+                <div class="tab-item">Exercises-4</div>
+                <div class="tab-item">Exercises-5</div>
+            </div>
+            <div id="nav-tabContent" class="tab">
+                {{!-- Lặp qua các data trong dữ liệu --}}
+                {{#each data}}
+                {{!-- Lặp qua các phần tử ở trong data ở đây là exercises
+                --}}
+                {{#each this}}
+                {{!-- Lặp tiếp qua quesion--}}
+                {{#each this.quesion}}
+                {{#ifCond @index '==' 0}}
+                {{!-- Nếu index là 0, thêm class active --}}
+                <div id="exercises-{{sum @index 1}}" class="tab-pane active">
+                    {{else}}
+                    {{!-- Nếu index không phải là 0, không thêm class active
+                    --}}
+                    <div id="exercises-{{sum @index 1}}" class="tab-pane">
+                        {{/ifCond}}
+                        {{!-- Lặp ở trong quesion chứa các câu hỏi và câu
+                        trả
+                        lời --}}
+                        {{#each this}}
+                        {{setVar @index}}
+                        <div class="box-exercise">
+                            <div class="row">
+                                <div class="quesion">
+                                    <p>{{sum @index 1}}. {{this.ques}}</p>
+                                </div>
+                                <div class="answer"
+                                    data-success="{{this.ans}}">
+                                    {{#each (randomAnswers this.ans
+                                    ../../this.words)}}
+                                    <div class="answer-option">
+                                        <input class="input" type="radio"
+                                            name="answer{{getVar}}"
+                                            value="{{this}}" />
+                                        <label>{{this}}</label>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                        <div class="box-btn">
+                            <div class="point-show mb-4">
+                            </div>
+                            <button class="btn-ex btn-restart"
+                                onclick="reset_exersice()">Restart</button>
+                            <button type="submit" class="btn-ex btn-submit"
+                                data-toggle="modal"
+                                data-target="#point-modal"
+                                onclick="submit_exersice({{sum @index 1}})">Submit</button>
+                        </div>
+                    </div>
+                    {{/each}}
+                    {{/each}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="point-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Bạn chắc muốn lưu điểm và làm lại không</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-point" type="button"
+                        class="btn btn-success">Đồng ý</button>
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form method="POST" name="point-form"></form>
+    <script src="/js/active.js"></script>
+    <script src="/js/main.ex.js"></script>

@@ -1,0 +1,51 @@
+<div class="nav">
+    <div class="nav-conteiner">
+        <a class="nav-conteiner-link" href="/home">
+            <h1>English Vocabulary Exercises</h1>
+            <!-- <img src="./assets/img/freeimg-removebg-preview.png" alt="" > -->
+        </a>
+        <div class="user">
+            {{#if username.user}}
+            <!-- Hiển thị nội dung cho người dùng đã đăng nhập -->
+            <p>Xin chào, {{username.user.username}}!</p>
+            <div class="user-hover" style="display:none;">
+                <a href="/profile/{{username.user._id}}">Thông tin người dùng</a>
+                <a href="/logout">Đăng xuất</a>
+            </div>
+            {{else}}
+            <!-- Hiển thị nội dung cho người dùng chưa đăng nhập -->
+            <a href="/">Vui lòng đăng nhập.</a>
+            {{/if}}
+        </div>
+    </div>
+</div>
+<script>
+    var href = window.location.href
+    if( href == "http://localhost:3000/home" || href == "http://localhost:4000/home"){
+        document.querySelector('.user').style.display = 'block'
+    }
+    else{
+        document.querySelector('.user').style.display = 'none'
+    }
+</script>
+<script>
+    var user = document.querySelector('.user')
+    var hover = document.querySelector('.user-hover')
+    user.addEventListener('mouseover',() =>{
+        if(hover == null){
+            return
+        }
+        else{
+            hover.style.display = 'block'
+        }
+    })
+    user.addEventListener('mouseout',() =>{
+        if(hover == null){
+            return
+        }
+        else{
+            hover.style.display = 'none'
+            
+        }
+    })
+</script>
